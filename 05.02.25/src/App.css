@@ -1,0 +1,40 @@
+.game-container {
+  text-align: center;
+  padding: 20px;
+}
+
+.game-info {
+  margin: 20px;
+}
+
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(4, 100px);
+  gap: 10px;
+  justify-content: center;
+}
+
+.card {
+  width: 80px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #333;
+  font-size: 48px;
+  cursor: pointer;
+  background-color: #f0f0f0;
+  transition: transform 0.3s ease-in-out;
+}
+
+.card.flipped {
+  background-color: white;
+  transform: rotateY(180deg);
+}
+
+button {
+  margin-top: 20px;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
