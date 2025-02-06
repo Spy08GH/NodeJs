@@ -1,0 +1,72 @@
+/* Основной контейнер */
+.App {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden; /* Чтобы фон не выходил за пределы экрана */
+}
+
+/* Стиль для блока с монетами */
+.coin-display {
+  text-align: center;
+  margin-top: 20px;
+  z-index: 10; /* текст выше фона */
+}
+
+.coin-display h2, .coin-display p {
+  color: #fff;
+  font-size: 24px;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7), 0 0 25px #fff, 0 0 5px #fff;
+}
+
+/* Кнопка "Добыть" */
+.mine-button {
+  font-size: 30px;
+  font-weight: bold;
+  color: white;
+  background-color: #007bff;
+  border: none;
+  padding: 20px 40px;
+  cursor: pointer;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8), 0 0 5px #fff;
+  transition: background-color 0.3s;
+  z-index: 10; /* кнопка должна быть выше фона */
+}
+
+.mine-button:hover {
+  background-color: #0056b3;
+}
+
+/* Контейнер для кнопок улучшений (слева сверху) */
+.upgrade-buttons {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 10; /* кнопки улучшений выше фона */
+}
+
+/* Стиль для кнопок улучшений */
+.upgrade-button {
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  background-color: #28a745;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8), 0 0 5px #fff;
+}
+
+.upgrade-button:hover {
+  background-color: #218838;
+}
