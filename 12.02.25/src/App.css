@@ -1,0 +1,29 @@
+.App {
+  text-align: center;
+  background-color: white; /* Сделан фон белым */
+  min-height: 100vh;
+  color: black; /* Цвет текста чёрный */
+}
+
+.App-header {
+  padding: 20px;
+}
+
+.square {
+  position: relative;
+  width: 500px; /* Увеличена область для элементов */
+  height: 500px; /* Увеличена область для элементов */
+  border: 2px solid black;
+  margin: 20px auto;
+}
+
+.help {
+  color: #61dafb;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.help-text {
+  font-size: 14px;
+  color: black; /* Сделан текст помощи чёрным */
+}
