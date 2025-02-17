@@ -1,0 +1,59 @@
+/* App.css */
+.game-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: linear-gradient(to bottom, #87ceeb, #ffffff);
+}
+
+.sky {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+}
+
+.sun {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background-color: yellow;
+  border-radius: 50%;
+  top: 50px;
+  left: 100px;
+}
+
+.ground {
+  position: absolute;
+  width: 100%;
+  height: 60px;
+  background-color: #8b0000;
+  bottom: 0;
+}
+
+.player {
+  position: absolute;
+  background-color: red;
+  width: 40px;
+  height: 40px;
+}
+
+.spike {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-bottom: 30px solid darkgreen;
+}
+
+.game-over {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 3rem;
+  color: white;
+  text-align: center;
+}
