@@ -1,0 +1,457 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css');
+
+:root {
+  --primary-color: #1DA1F2;
+  --primary-light: #1DA1F2aa;
+  --primary-dark: #0d8bd9;
+  --bg-color: #000000;
+  --secondary-bg: #15181c;
+  --border-color: #2f3336;
+  --text-color: #ffffff;
+  --text-secondary: #8899a6;
+  --text-light: #e1e8ed;
+  --text-error: #ff4d4d;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.5;
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.app {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Layout */
+.home-container {
+  display: flex;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.sidebar {
+  width: 275px;
+  padding: 20px;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  border-right: 1px solid var(--border-color);
+}
+
+.logo {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: var(--primary-color);
+}
+
+.sidebar nav ul {
+  list-style: none;
+}
+
+.sidebar nav ul li {
+  margin-bottom: 15px;
+}
+
+.sidebar nav ul li a {
+  display: flex;
+  align-items: center;
+  color: var(--text-color);
+  font-size: 18px;
+  padding: 10px;
+  border-radius: 30px;
+  transition: background-color 0.2s;
+}
+
+.sidebar nav ul li a:hover,
+.sidebar nav ul li.active a {
+  background-color: rgba(29, 161, 242, 0.1);
+  color: var(--primary-color);
+}
+
+.sidebar nav ul li a i {
+  margin-right: 15px;
+  font-size: 20px;
+}
+
+.tweet-button {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 30px;
+  padding: 15px 0;
+  font-size: 16px;
+  font-weight: 700;
+  width: 100%;
+  margin-top: 20px;
+  transition: background-color 0.2s;
+}
+
+.tweet-button:hover {
+  background-color: var(--primary-dark);
+}
+
+.logout-button {
+  background-color: transparent;
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  border-radius: 30px;
+  padding: 10px 0;
+  font-size: 14px;
+  width: 100%;
+  margin-top: 20px;
+  transition: background-color 0.2s;
+}
+
+.logout-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.main-content {
+  flex: 1;
+  border-right: 1px solid var(--border-color);
+  min-height: 100vh;
+}
+
+.main-content header {
+  padding: 15px;
+  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  background-color: var(--bg-color);
+  z-index: 10;
+}
+
+.main-content header h1 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.main-content .tabs {
+  display: flex;
+  justify-content: space-between;
+}
+
+.main-content .tabs button {
+  flex: 1;
+  background-color: transparent;
+  color: var(--text-secondary);
+  border: none;
+  padding: 15px 0;
+  font-size: 15px;
+  font-weight: 600;
+  position: relative;
+  transition: color 0.2s;
+}
+
+.main-content .tabs button:hover {
+  color: var(--text-color);
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.main-content .tabs button.active {
+  color: var(--primary-color);
+}
+
+.main-content .tabs button.active::after {
+    content: '';
+    position: absolute;
+    height: 4px;
+    width: 70px;
+    background-color: var(--primary-color);
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 4px;
+  }
+  
+  /* Tweet Form */
+  .tweet-form {
+    padding: 15px;
+    display: flex;
+    border-bottom: 1px solid var(--border-color);
+  }
+  
+  .tweet-form-avatar, .tweet-avatar {
+    margin-right: 12px;
+  }
+  
+  .avatar-placeholder {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: var(--text-secondary);
+  }
+  
+  .tweet-form form {
+    flex: 1;
+  }
+  
+  .tweet-form textarea {
+    width: 100%;
+    min-height: 80px;
+    background-color: transparent;
+    border: none;
+    color: var(--text-color);
+    font-size: 18px;
+    font-family: inherit;
+    resize: none;
+    margin-bottom: 10px;
+    outline: none;
+  }
+  
+  .tweet-form textarea::placeholder {
+    color: var(--text-secondary);
+  }
+  
+  .tweet-form-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .character-count {
+    color: var(--text-secondary);
+    font-size: 14px;
+  }
+  
+  .tweet-form button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: 8px 16px;
+    font-weight: 700;
+    font-size: 15px;
+    transition: background-color 0.2s;
+  }
+  
+  .tweet-form button:hover {
+    background-color: var(--primary-dark);
+  }
+  
+  .tweet-form button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  /* Tweet List */
+  .tweet-list {
+    padding-bottom: 50px;
+  }
+  
+  .tweet {
+    display: flex;
+    padding: 15px;
+    border-bottom: 1px solid var(--border-color);
+    transition: background-color 0.2s;
+  }
+  
+  .tweet:hover {
+    background-color: rgba(255, 255, 255, 0.03);
+  }
+  
+  .tweet-content {
+    flex: 1;
+  }
+  
+  .tweet-header {
+    display: flex;
+    margin-bottom: 5px;
+  }
+  
+  .tweet-author {
+    font-weight: 700;
+    margin-right: 5px;
+  }
+  
+  .tweet-date {
+    color: var(--text-secondary);
+    font-size: 14px;
+  }
+  
+  .tweet-text {
+    margin-bottom: 10px;
+    word-wrap: break-word;
+  }
+  
+  .tweet-actions {
+    display: flex;
+    justify-content: space-between;
+    max-width: 80%;
+  }
+  
+  .tweet-actions button {
+    background-color: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 16px;
+    padding: 5px;
+    border-radius: 50%;
+    transition: all 0.2s;
+  }
+  
+  .tweet-actions button:hover {
+    color: var(--primary-color);
+    background-color: rgba(29, 161, 242, 0.1);
+  }
+  
+  .loading {
+    padding: 20px;
+    text-align: center;
+    color: var(--text-secondary);
+  }
+  
+  .no-tweets {
+    padding: 30px;
+    text-align: center;
+    color: var(--text-secondary);
+  }
+  
+  /* Authentication */
+  .auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    width: 100%;
+  }
+  
+  .auth-box {
+    background-color: var(--secondary-bg);
+    border-radius: 15px;
+    padding: 30px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  }
+  
+  .auth-box h1 {
+    color: var(--primary-color);
+    font-size: 28px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .auth-box h2 {
+    font-size: 20px;
+    margin-bottom: 25px;
+    text-align: center;
+  }
+  
+  .auth-box form {
+    margin-bottom: 20px;
+  }
+  
+  .input-group {
+    margin-bottom: 15px;
+  }
+  
+  .input-group input {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--bg-color);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  
+  .input-group input:focus {
+    border-color: var(--primary-color);
+  }
+  
+  .auth-box button {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: 700;
+    margin-top: 10px;
+    transition: background-color 0.2s;
+  }
+  
+  .auth-box button:hover {
+    background-color: var(--primary-dark);
+  }
+  
+  .auth-box button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+  
+  .auth-switch {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 14px;
+  }
+  
+  .error-message {
+    background-color: rgba(255, 77, 77, 0.1);
+    color: var(--text-error);
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    font-size: 14px;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .home-container {
+      flex-direction: column;
+    }
+    
+    .sidebar {
+      width: 100%;
+      height: auto;
+      position: relative;
+      padding: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-right: none;
+      border-bottom: 1px solid var(--border-color);
+    }
+    
+    .logo {
+      margin-bottom: 0;
+    }
+    
+    .sidebar nav {
+      display: none;
+    }
+    
+    .tweet-button, .logout-button {
+      width: auto;
+      padding: 8px 16px;
+      margin-top: 0;
+    }
+  }
