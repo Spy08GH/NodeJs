@@ -1,0 +1,207 @@
+{% extends "base.html" %}
+
+{% block title %}Заказ #{{ order.id }} - Система курьерской доставки{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Заказ #{{ order.id }}</h1>
+        <div>
+            <a href="{{ url_for('orders') }}" class="btn btn-outline-secondary">
+                <i class="fas fa-arrow-left"></i> Назад к списку
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Основная информация о заказе -->
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Информация о заказе</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-3">
+                        <div class="col-md-4 fw-bold">ID заказа:</div>
+                        <div class="col-md-8">{{ order.id }}</div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-4 fw-bold">Дата создания:</div>
+                        <div class="col-md-8">{{ order.created_at|timestamp_to_date }}</div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-4 fw-bold">Адрес отправления:</div>
+                        <div class="col-md-8">({{ "%.6f"|format(order.address_from_lat) }}, {{ "%.6f"|format(order.address_from_long) }})</div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-4 fw-bold">Адрес доставки:</div>
+                        <div class="col-md-8">({{ "%.6f"|format(order.address_to_lat) }}, {{ "%.6f"|format(order.address_to_long) }})</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Информация о клиенте -->
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Информация о клиенте</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-3">
+                        <div class="col-md-4 fw-bold">ID клиента:</div>
+                        <div class="col-md-8">{{ customer.id }}</div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-4 fw-bold">Имя:</div>
+                        <div class="col-md-8">{{ customer.name }}</div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-4 fw-bold">Фамилия:</div>
+                        <div class="col-md-8">{{ customer.lastname or 'Не указано' }}</div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-4 fw-bold">Отчество:</div>
+                        <div class="col-md-8">{{ customer.surname or 'Не указано' }}</div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-4 fw-bold">Логин:</div>
+                        <div class="col-md-8">{{ customer.username }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Информация о счете -->
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Информация о счете</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-3">
+                        <div class="col-md-4 fw-bold">ID счета:</div>
+                        <div class="col-md-8">{{ invoice.id }}</div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-4 fw-bold">Общая стоимость:</div>
+                        <div class="col-md-8">₽{{ "%.2f"|format(invoice.price) }}</div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-4 fw-bold">Оплата курьеру:</div>
+                        <div class="col-md-8">₽{{ "%.2f"|format(invoice.courier_price) }}</div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-4 fw-bold">Комиссия сервиса:</div>
+                        <div class="col-md-8">₽{{ "%.2f"|format(invoice.commission) }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Информация о трекере и курьере -->
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Информация о доставке</h5>
+                </div>
+                <div class="card-body">
+                    {% if tracker %}
+                        <div class="row mb-3">
+                            <div class="col-md-4 fw-bold">ID трекера:</div>
+                            <div class="col-md-8">{{ tracker.id }}</div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-4 fw-bold">Трек-номер:</div>
+                            <div class="col-md-8">
+                                <span class="badge bg-primary p-2">{{ tracker.track_number }}</span>
+                            </div>
+                        </div>
+                        <hr>
+                        <h6 class="mb-3">Информация о курьере</h6>
+                        <div class="row mb-3">
+                            <div class="col-md-4 fw-bold">ID курьера:</div>
+                            <div class="col-md-8">{{ courier.id }}</div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-4 fw-bold">Имя:</div>
+                            <div class="col-md-8">{{ courier.name }}</div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-4 fw-bold">Фамилия:</div>
+                            <div class="col-md-8">{{ courier.lastname or 'Не указано' }}</div>
+                        </div>
+                    {% else %}
+                        <div class="alert alert-warning">
+                            Информация о трекере не найдена
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Карта доставки -->
+    <div class="card mb-4">
+        <div class="card-header">
+            <h5>Карта маршрута</h5>
+        </div>
+        <div class="card-body">
+            <div id="map" style="height: 400px;"></div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
+<script>
+    function initMap() {
+        const fromLat = {{ order.address_from_lat }};
+        const fromLng = {{ order.address_from_long }};
+        const toLat = {{ order.address_to_lat }};
+        const toLng = {{ order.address_to_long }};
+        
+        const map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 12,
+            center: { lat: (fromLat + toLat) / 2, lng: (fromLng + toLng) / 2 },
+        });
+        
+        // Маркер отправления
+        const markerFrom = new google.maps.Marker({
+            position: { lat: fromLat, lng: fromLng },
+            map: map,
+            title: "Точка отправления",
+            icon: {
+                url: "http://maps.google.com/mapfiles/ms/icons/green-dot.png"
+            }
+        });
+        
+        // Маркер доставки
+        const markerTo = new google.maps.Marker({
+            position: { lat: toLat, lng: toLng },
+            map: map,
+            title: "Точка доставки",
+            icon: {
+                url: "http://maps.google.com/mapfiles/ms/icons/red-dot.png"
+            }
+        });
+        
+        // Рисуем линию маршрута
+        const path = new google.maps.Polyline({
+            path: [
+                { lat: fromLat, lng: fromLng },
+                { lat: toLat, lng: toLng },
+            ],
+            geodesic: true,
+            strokeColor: "#0000FF",
+            strokeOpacity: 1.0,
+            strokeWeight: 2,
+        });
+        
+        path.setMap(map);
+    }
+</script>
+{% endblock %}
