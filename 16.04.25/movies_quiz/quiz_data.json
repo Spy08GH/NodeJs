@@ -1,0 +1,35 @@
+[
+  {
+    "filename": "media/interstellar_clip.mp4",
+    "correct": "Interstellar",
+    "options": [
+      "Inception",
+      "Tenet",
+      "Gravity",
+      "The Martian",
+      "Interstellar"
+    ]
+  },
+  {
+    "filename": "media/matrix_clip.mp4",
+    "correct": "The Matrix",
+    "options": [
+      "Johnny Mnemonic",
+      "Equilibrium",
+      "The Fifth Element",
+      "Dark City",
+      "The Matrix"
+    ]
+  },
+  {
+    "filename": "media/pulp_fiction_clip.mp4",
+    "correct": "Pulp Fiction",
+    "options": [
+      "Reservoir Dogs",
+      "Jackie Brown",
+      "The Hateful Eight",
+      "Kill Bill",
+      "Pulp Fiction"
+    ]
+  }
+]
